@@ -40,6 +40,8 @@ const styledHeader = styled.header`
   }
 `;
 
+//
+
 const Header = () => (
   <div>
     <div className="bar">
