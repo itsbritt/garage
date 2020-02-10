@@ -1,6 +1,20 @@
-import Nav from "./Nav";
 import Link from "next/link";
 import styled from "styled-components";
+import Nav from "./Nav";
+import Router from "next/router";
+import NProgress from "nprogress";
+
+Router.onRouteChangeStart = () => {
+  NProgress.start();
+};
+
+Router.onRouteChangeComplete = () => {
+  NProgress.done();
+};
+
+Router.onRouteChangeComplete = () => {
+  NProgress.done();
+};
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -21,7 +35,7 @@ const Logo = styled.h1`
   }
 `;
 
-const styledHeader = styled.header`
+const StyledHeader = styled.header`
   .bar {
     border-bottom: 10px solid ${props => props.theme.black};
     display: grid;
@@ -43,7 +57,7 @@ const styledHeader = styled.header`
 //
 
 const Header = () => (
-  <div>
+  <StyledHeader>
     <div className="bar">
       <Logo>
         <Link href="/">
@@ -57,7 +71,7 @@ const Header = () => (
       <p>Search</p>
     </div>
     <div>Cart</div>
-  </div>
+  </StyledHeader>
 );
 
 export default Header;
