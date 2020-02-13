@@ -9,10 +9,7 @@ import PriceTag from "./styles/PriceTag";
 
 export default class Item extends Component {
   static propTypes = {
-    item: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired
-    })
+    item: PropTypes.object.isRequired
   };
 
   render() {
@@ -28,7 +25,7 @@ export default class Item extends Component {
         </Title>
         <PriceTag>{formatMoney(item.price)}</PriceTag>
         <p>{item.description}</p>
-        <div className="button-list">
+        <div className="buttonList">
           <Link href={{ pathname: "update", query: { id: item.id } }}>
             <a>Edit</a>
           </Link>

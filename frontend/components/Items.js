@@ -30,11 +30,10 @@ const ItemsList = styled.div`
   margin: 0 auto;
 `;
 
-export default class Items extends Component {
+class Items extends Component {
   render() {
     return (
       <Center>
-        <p>Items!</p>
         <Query query={ALL_ITEMS_QUERY}>
           {({ data, error, loading }) => {
             if (loading) return <p>Loading...</p>;
@@ -52,3 +51,6 @@ export default class Items extends Component {
     );
   }
 }
+
+export default Items;
+export { ALL_ITEMS_QUERY };
