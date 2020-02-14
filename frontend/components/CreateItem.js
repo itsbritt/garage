@@ -14,7 +14,7 @@ const CREATE_ITEM_MUTATION = gql`
     $image: String
     $largeImage: String
   ) {
-    CreateItem(
+    createItem(
       title: $title
       description: $description
       price: $price
@@ -28,13 +28,12 @@ const CREATE_ITEM_MUTATION = gql`
 
 class CreateItem extends Component {
   state = {
-    title: "Cool Shoes",
-    description: "I love those shoes",
-    image: "dog.jpg",
-    largeImage: "large-dog.jpg",
-    price: 1000
+    title: "",
+    description: "",
+    image: "",
+    largeImage: "",
+    price: 0
   };
-
   handleChange = e => {
     const { name, type, value } = e.target;
     const val = type === "number" ? parseFloat(value) : value;
@@ -42,35 +41,36 @@ class CreateItem extends Component {
   };
 
   uploadFile = async e => {
-    console.log("uploading file...");
     const files = e.target.files;
     const data = new FormData();
     data.append("file", files[0]);
-    data.append("upload_preset", "sickfits");
+    data.append("upload_preset", "garage");
 
     const res = await fetch(
-      "https://api.cloudinary.com/v1_1/wesbostutorial/image/upload",
+      "https://api.cloudinary.com/v1_1/dsbib3ryj/image/upload",
       {
         method: "POST",
         body: data
       }
     );
     const file = await res.json();
-    console.log(file);
     this.setState({
       image: file.secure_url,
       largeImage: file.eager[0].secure_url
     });
   };
-
   render() {
     return (
       <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
         {(createItem, { loading, error }) => (
           <Form
+            data-test="form"
             onSubmit={async e => {
+              // Stop the form from submitting
               e.preventDefault();
+              // call the mutation
               const res = await createItem();
+              // change them to the single item page
               console.log(res);
               Router.push({
                 pathname: "/item",
@@ -79,7 +79,7 @@ class CreateItem extends Component {
             }}
           >
             <Error error={error} />
-            <fieldset disabled={labeled} aria-busy={loading}>
+            <fieldset disabled={loading} aria-busy={loading}>
               <label htmlFor="file">
                 Image
                 <input
@@ -98,6 +98,7 @@ class CreateItem extends Component {
                   />
                 )}
               </label>
+
               <label htmlFor="title">
                 Title
                 <input
@@ -105,23 +106,37 @@ class CreateItem extends Component {
                   id="title"
                   name="title"
                   placeholder="Title"
+                  required
                   value={this.state.title}
                   onChange={this.handleChange}
-                  required
                 />
               </label>
+
               <label htmlFor="price">
-                Title
+                Price
                 <input
-                  type="text"
+                  type="number"
                   id="price"
                   name="price"
                   placeholder="Price"
+                  required
                   value={this.state.price}
                   onChange={this.handleChange}
-                  required
                 />
               </label>
+
+              <label htmlFor="description">
+                Description
+                <textarea
+                  id="description"
+                  name="description"
+                  placeholder="Enter A Description"
+                  required
+                  value={this.state.description}
+                  onChange={this.handleChange}
+                />
+              </label>
+              <button type="submit">Submit</button>
             </fieldset>
           </Form>
         )}

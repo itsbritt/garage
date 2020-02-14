@@ -13,7 +13,12 @@ type Mutation {
 }
 
 type Query {
-  items: [Item]!
-  item(where: itemWhereUniqueInput!): Item
+  items(
+    where: ItemWhereInput
+    orderBy: ItemOrderByInput
+    skip: Int
+    first: Int
+  ): [Item]!
+  item(where: ItemWhereUniqueInput!): Item
   itemsConnection(where: ItemWhereInput): ItemConnection!
 }
