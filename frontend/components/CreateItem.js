@@ -32,7 +32,7 @@ class CreateItem extends Component {
     description: "",
     image: "",
     largeImage: "",
-    price: ""
+    price: 0
   };
   handleChange = e => {
     const { name, type, value } = e.target;
@@ -67,11 +67,12 @@ class CreateItem extends Component {
             data-test="form"
             onSubmit={async e => {
               // Stop the form from submitting
+
               e.preventDefault();
               // call the mutation
               const res = await createItem();
               // change them to the single item page
-              console.log(res);
+              console.log("RES", res);
               Router.push({
                 pathname: "/item",
                 query: { id: res.data.createItem.id }
@@ -115,7 +116,7 @@ class CreateItem extends Component {
               <label htmlFor="price">
                 Price
                 <input
-                  type="number"
+                  type="text"
                   id="price"
                   name="price"
                   placeholder="Price"
