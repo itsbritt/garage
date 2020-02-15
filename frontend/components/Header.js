@@ -66,10 +66,11 @@ const Header = () => (
 
       <Nav />
     </div>
-    <div className="sub-bar">
+    <br />
+    {/* <div className="sub-bar">
       <p>Search</p>
     </div>
-    <div>Cart</div>
+    <div>Cart</div> */}
   </StyledHeader>
 );
 
