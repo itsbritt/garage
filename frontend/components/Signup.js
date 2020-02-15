@@ -49,30 +49,36 @@ export default class Signup extends Component {
             <fieldset disabled={loading} aria-busy={loading}>
               <h2>Sign Up for an Account</h2>
               <Error error={error} htmlFor="email" />
-              <label htmlFor="email">Email</label>
-              <input
-                type="text"
-                placeholder="email"
-                name="email"
-                value={this.props.email}
-                onChange={this.saveToState}
-              />
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                placeholder="name"
-                name="name"
-                value={this.props.name}
-                onChange={this.saveToState}
-              />
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                placeholder="password"
-                name="password"
-                value={this.props.password}
-                onChange={this.saveToState}
-              />
+              <label htmlFor="email">
+                Email
+                <input
+                  type="text"
+                  placeholder="email"
+                  name="email"
+                  value={this.props.email}
+                  onChange={this.saveToState}
+                />
+              </label>
+              <label htmlFor="name">
+                Name
+                <input
+                  type="text"
+                  placeholder="name"
+                  name="name"
+                  value={this.props.name}
+                  onChange={this.saveToState}
+                />
+              </label>
+              <label htmlFor="password">
+                Password
+                <input
+                  type="password"
+                  placeholder="password"
+                  name="password"
+                  value={this.props.password}
+                  onChange={this.saveToState}
+                />
+              </label>
               <button type="submit">Sign Up!</button>
             </fieldset>
           </Form>

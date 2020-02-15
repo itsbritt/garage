@@ -32,7 +32,7 @@ class CreateItem extends Component {
     description: "",
     image: "",
     largeImage: "",
-    price: null
+    price: ""
   };
   handleChange = e => {
     const { name, type, value } = e.target;
