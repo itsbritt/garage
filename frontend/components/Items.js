@@ -30,11 +30,6 @@ const ItemsList = styled.div`
   max-width: ${props => props.theme.maxWidth};
   margin: 0 auto;
 `;
-// const ItemsList = styled.div`
-//   display: flex;
-//   flex-wrap: wrap;
-//   max-width: ${props => props.theme.maxWidth};
-// `;
 
 class Items extends Component {
   render() {
